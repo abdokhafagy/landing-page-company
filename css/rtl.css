@@ -1,0 +1,306 @@
+/* ===========================
+   RTL (Right-to-Left) Overrides
+   Arabic Language Support
+   =========================== */
+
+/* Note: Most layout uses CSS logical properties in main stylesheet.
+   This file contains only specific directional overrides needed. */
+
+[dir="rtl"] {
+  /* ===========================
+     NAVIGATION OVERRIDES
+     =========================== */
+  
+  /* Hamburger Menu Direction */
+  .nav-links {
+    right: auto;
+    left: -100%;
+  }
+  
+  .nav-links.open {
+    left: 0;
+    right: auto;
+  }
+  
+  /* Mobile Menu Overlay */
+  .nav-links.open::before {
+    left: auto;
+    right: -80%;
+  }
+  
+  /* ===========================
+     HERO SECTION
+     =========================== */
+  
+  /* Ensure proper text alignment */
+  .hero-content {
+    text-align: center; /* Keep centered for both LTR/RTL */
+  }
+  
+  /* ===========================
+     ABOUT SECTION
+     =========================== */
+  
+  /* Reverse image/text order on desktop */
+  @media (min-width: 768px) {
+    .about-text {
+      order: 2;
+    }
+    
+    .about-image {
+      order: 1;
+    }
+  }
+  
+  /* Right-align text elements */
+  .milestone-badge {
+    bottom: var(--space-4);
+    right: auto;
+    left: var(--space-4);
+  }
+  
+  /* ===========================
+     TESTIMONIALS
+     =========================== */
+  
+  /* Author info alignment */
+  .author-info {
+    text-align: right;
+  }
+  
+  @media (max-width: 768px) {
+    .author-info {
+      text-align: center; /* Center on mobile for both directions */
+    }
+  }
+  
+  /* ===========================
+     CONTACT SECTION
+     =========================== */
+  
+  /* Contact method icon alignment */
+  .contact-method {
+    flex-direction: row-reverse;
+  }
+  
+  /* Footer contact icons */
+  .footer-contact i {
+    width: 20px;
+    text-align: right;
+  }
+  
+  /* ===========================
+     PORTFOLIO
+     =========================== */
+  
+  /* Portfolio button hover direction */
+  .portfolio-btn:hover {
+    transform: translateX(-5px); /* Reverse direction */
+  }
+  
+  /* ===========================
+     FORM ELEMENTS
+     =========================== */
+  
+  /* Newsletter input group */
+  .newsletter-input-group {
+    flex-direction: row-reverse;
+  }
+  
+  @media (max-width: 576px) {
+    .newsletter-input-group {
+      flex-direction: column; /* Stack on mobile regardless of direction */
+    }
+  }
+  
+  /* ===========================
+     MODALS
+     =========================== */
+  
+  /* Modal close button */
+  .modal-close {
+    right: auto;
+    left: var(--space-4);
+  }
+  
+  .newsletter-close {
+    right: auto;
+    left: var(--space-4);
+  }
+  
+  /* ===========================
+     ANIMATIONS
+     =========================== */
+  
+  /* Reverse slide-in animations */
+  .reveal-left {
+    transform: translateX(30px);
+  }
+  
+  .reveal-left.active {
+    transform: translateX(0);
+  }
+  
+  .reveal-right {
+    transform: translateX(-30px);
+  }
+  
+  .reveal-right.active {
+    transform: translateX(0);
+  }
+  
+  /* ===========================
+     SCROLLBAR STYLING
+     =========================== */
+  
+  /* Custom scrollbar for RTL */
+  html[dir="rtl"] ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  html[dir="rtl"] ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+  
+  html[dir="rtl"] ::-webkit-scrollbar-thumb {
+    background: var(--accent-gold);
+    border-radius: var(--radius-full);
+  }
+  
+  html[dir="rtl"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-gold-dark);
+  }
+}
+
+/* ===========================
+   ARABIC TYPOGRAPHY
+   =========================== */
+
+[lang="ar"] {
+  /* Improve Arabic text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-feature-settings: "liga", "kern";
+  font-feature-settings: "liga", "kern";
+}
+
+/* Arabic-specific font weights and spacing */
+[lang="ar"] h1,
+[lang="ar"] h2,
+[lang="ar"] h3 {
+  font-weight: var(--font-bold);
+  letter-spacing: 0; /* Remove letter-spacing for Arabic */
+}
+
+[lang="ar"] .hero-title {
+  line-height: var(--leading-snug); /* Tighter line height for Arabic headlines */
+}
+
+[lang="ar"] .testimonial-quote {
+  font-style: normal; /* Remove italic for Arabic text */
+}
+
+/* ===========================
+   BIDI (BIDIRECTIONAL) FIXES
+   =========================== */
+
+/* Ensure numbers and English text within Arabic maintain LTR */
+[dir="rtl"] .stat-number,
+[dir="rtl"] .author-name,
+[dir="rtl"] .author-role {
+  direction: ltr;
+  text-align: center;
+  unicode-bidi: embed;
+}
+
+/* Email addresses and URLs should always be LTR */
+[dir="rtl"] .footer-contact p:nth-child(1),
+[dir="rtl"] .footer-contact p:nth-child(2) {
+  direction: ltr;
+  text-align: right;
+}
+
+/* Phone numbers in LTR format */
+[dir="rtl"] input[type="tel"] {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: embed;
+}
+
+/* ===========================
+   ICON OVERRIDES
+   =========================== */
+
+/* Mirror certain icons in RTL */
+[dir="rtl"] .fa-chevron-left::before {
+  content: "\f054"; /* Right chevron */
+}
+
+[dir="rtl"] .fa-chevron-right::before {
+  content: "\f053"; /* Left chevron */
+}
+
+[dir="rtl"] .fa-angle-left::before {
+  content: "\f105"; /* Right angle */
+}
+
+[dir="rtl"] .fa-angle-right::before {
+  content: "\f104"; /* Left angle */
+}
+
+/* Keep certain icons unchanged */
+[dir="rtl"] .fa-envelope,
+[dir="rtl"] .fa-phone,
+[dir="rtl"] .fa-whatsapp,
+[dir="rtl"] .social-links i {
+  transform: none;
+}
+
+/* ===========================
+   RESPONSIVE RTL ADJUSTMENTS
+   =========================== */
+
+@media (max-width: 768px) {
+  [dir="rtl"] .hero-stats {
+    direction: ltr; /* Keep stats in LTR order on mobile */
+  }
+  
+  [dir="rtl"] .footer-bottom-content {
+    text-align: center; /* Center footer on mobile */
+  }
+}
+
+@media (min-width: 768px) {
+  [dir="rtl"] .footer-bottom-content {
+    flex-direction: row-reverse; /* Reverse footer layout */
+  }
+}
+
+/* ===========================
+   PRINT OVERRIDES
+   =========================== */
+
+@media print {
+  [dir="rtl"] body {
+    direction: rtl;
+    text-align: right;
+  }
+  
+  [dir="rtl"] .container {
+    direction: rtl;
+  }
+}
+
+/* ===========================
+   ACCESSIBILITY IMPROVEMENTS
+   =========================== */
+
+/* Ensure focus indicators work well in RTL */
+[dir="rtl"] *:focus-visible {
+  outline-offset: 2px;
+}
+
+/* Screen reader text direction */
+[dir="rtl"] .sr-only {
+  direction: rtl;
+  text-align: right;
+}

@@ -1,0 +1,286 @@
+/* ===========================
+   CSS Custom Properties (Variables)
+   Theming System for Light/Dark Mode
+   =========================== */
+
+/* Light Mode (Default) */
+:root {
+  /* Colors - Brand */
+  --accent-gold: #D4A853;
+  --accent-gold-light: #F0C75E;
+  --accent-gold-dark: #B8924A;
+  
+  /* Colors - Dark Navy (Constant for brand consistency) */
+  --brand-navy: #0A1628;
+  --brand-navy-light: #1B2A4A;
+  
+  /* Colors - Light Mode Backgrounds */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F7FA;
+  --bg-tertiary: #E8EBF0;
+  --bg-overlay: rgba(255, 255, 255, 0.95);
+  
+  /* Colors - Light Mode Text */
+  --text-primary: #1A1A2E;
+  --text-secondary: #4A4A6A;
+  --text-tertiary: #8B8BA7;
+  --text-inverse: #FFFFFF;
+  
+  /* Colors - UI Elements */
+  --card-bg: #FFFFFF;
+  --border-light: #E0E4EA;
+  --border-medium: #D1D5DB;
+  --shadow-light: rgba(0, 0, 0, 0.08);
+  --shadow-medium: rgba(0, 0, 0, 0.12);
+  --shadow-heavy: rgba(0, 0, 0, 0.25);
+  
+  /* Colors - Status */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: var(--accent-gold);
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+  --gradient-hero: linear-gradient(135deg, rgba(10, 22, 40, 0.8) 0%, rgba(27, 42, 74, 0.6) 100%);
+  --gradient-overlay: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 100%);
+  
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-secondary: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+  /* Font Sizes (Fluid Typography) */
+  --text-xs: clamp(0.75rem, 1vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 1.2vw, 1rem);
+  --text-base: clamp(1rem, 1.5vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1.8vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 2vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 2.5vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 3vw, 2.25rem);
+  --text-4xl: clamp(2.25rem, 4vw, 3rem);
+  --text-5xl: clamp(3rem, 5vw, 4rem);
+  
+  /* Font Weights */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  
+  /* Line Heights */
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* Spacing Scale (8px base) */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;  /* 4px */
+  --radius-base: 0.5rem; /* 8px */
+  --radius-md: 0.75rem;  /* 12px */
+  --radius-lg: 1rem;     /* 16px */
+  --radius-xl: 1.5rem;   /* 24px */
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-out;
+  --transition-base: 250ms ease-out;
+  --transition-slow: 400ms ease-out;
+  --transition-transform: transform 250ms ease-out;
+  --transition-colors: color 150ms ease-out, background-color 150ms ease-out, border-color 150ms ease-out;
+  
+  /* Z-Index Scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1010;
+  --z-fixed: 1020;
+  --z-modal: 1030;
+  --z-toast: 1040;
+  --z-tooltip: 1050;
+  
+  /* Container Widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1400px;
+  --container-max: 1200px;
+  
+  /* Header Heights */
+  --header-height: 5rem;        /* 80px */
+  --header-height-mobile: 4rem; /* 64px */
+  
+  /* Animation Durations */
+  --duration-instant: 0ms;
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+  
+  /* Animation Easings */
+  --ease-linear: linear;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Dark Mode Theme */
+[data-theme="dark"] {
+  /* Colors - Dark Mode Backgrounds */
+  --bg-primary: var(--brand-navy);
+  --bg-secondary: var(--brand-navy-light);
+  --bg-tertiary: #2A3A5A;
+  --bg-overlay: rgba(10, 22, 40, 0.95);
+  
+  /* Colors - Dark Mode Text */
+  --text-primary: #E8E8E8;
+  --text-secondary: #B0B0C0;
+  --text-tertiary: #8B8B9A;
+  --text-inverse: var(--brand-navy);
+  
+  /* Colors - UI Elements (Dark Mode) */
+  --card-bg: #162040;
+  --border-light: #2A3A5A;
+  --border-medium: #3A4A6A;
+  --shadow-light: rgba(0, 0, 0, 0.2);
+  --shadow-medium: rgba(0, 0, 0, 0.3);
+  --shadow-heavy: rgba(0, 0, 0, 0.5);
+  
+  /* Gradients - Dark Mode */
+  --gradient-hero: linear-gradient(135deg, rgba(10, 22, 40, 0.9) 0%, rgba(27, 42, 74, 0.7) 100%);
+  --gradient-overlay: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%);
+  
+  /* Note: Gold accents remain the same for brand consistency */
+}
+
+/* Arabic Font Loading */
+[lang="ar"] {
+  --font-primary: var(--font-secondary);
+}
+
+[dir="rtl"] {
+  --font-primary: var(--font-secondary);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+    --transition-slow: 0ms;
+    --transition-transform: none;
+    --transition-colors: none;
+    --duration-instant: 0ms;
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --border-light: #000000;
+    --border-medium: #000000;
+  }
+  
+  [data-theme="dark"] {
+    --border-light: #FFFFFF;
+    --border-medium: #FFFFFF;
+  }
+}
+
+/* Theme Transition */
+html,
+html *,
+html *::before,
+html *::after {
+  transition: background-color 0.3s ease, 
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* Disable transitions on page load */
+html.no-transition,
+html.no-transition *,
+html.no-transition *::before,
+html.no-transition *::after {
+  transition: none !important;
+}
+
+/* Print Styles */
+@media print {
+  :root {
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #FFFFFF;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --accent-gold: #000000;
+    --shadow-light: none;
+    --shadow-medium: none;
+    --shadow-heavy: none;
+  }
+}
+
+/* Screen Size Based Adjustments */
+@media (max-width: 768px) {
+  :root {
+    --space-16: 3rem;    /* Reduce large spacing on mobile */
+    --space-20: 4rem;
+    --space-24: 5rem;
+    --space-32: 6rem;
+    --header-height: var(--header-height-mobile);
+  }
+}
+
+/* Utility Color Variations */
+:root {
+  /* Gold Color Palette */
+  --gold-50: #FFFBF0;
+  --gold-100: #FEF3C7;
+  --gold-200: #FDE68A;
+  --gold-300: #FCD34D;
+  --gold-400: var(--accent-gold-light);
+  --gold-500: var(--accent-gold);
+  --gold-600: var(--accent-gold-dark);
+  --gold-700: #A67C00;
+  --gold-800: #8B6914;
+  --gold-900: #723B13;
+  
+  /* Navy Color Palette */
+  --navy-50: #F0F4F8;
+  --navy-100: #D9E2EC;
+  --navy-200: #BCCCDC;
+  --navy-300: #9FB3C8;
+  --navy-400: #829AB1;
+  --navy-500: #627D98;
+  --navy-600: #486581;
+  --navy-700: #334E68;
+  --navy-800: var(--brand-navy-light);
+  --navy-900: var(--brand-navy);
+  
+  /* Semantic Color Variants */
+  --success-light: #ECFDF5;
+  --success-dark: #065F46;
+  --warning-light: #FFFBEB;
+  --warning-dark: #92400E;
+  --error-light: #FEF2F2;
+  --error-dark: #991B1B;
+}

@@ -1,0 +1,671 @@
+/* ===========================
+   Animations & Transitions
+   Scroll-triggered revelations, hover effects, and micro-interactions
+   =========================== */
+
+/* ===========================
+   SCROLL REVEAL ANIMATIONS
+   =========================== */
+
+/* Base reveal class - all elements start hidden */
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-scale {
+  opacity: 0;
+  transition: all var(--transition-slow) var(--ease-out);
+  will-change: transform, opacity;
+}
+
+/* Default reveal (fade up) */
+.reveal {
+  transform: translateY(30px);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Left slide reveal */
+.reveal-left {
+  transform: translateX(-30px);
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Right slide reveal */
+.reveal-right {
+  transform: translateX(30px);
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale reveal */
+.reveal-scale {
+  transform: scale(0.95);
+}
+
+.reveal-scale.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ===========================
+   STAGGERED ANIMATIONS
+   =========================== */
+
+/* Service cards stagger */
+.service-card.reveal-scale {
+  transition-delay: calc(var(--delay, 0) * 100ms);
+}
+
+/* Portfolio cards stagger */
+.portfolio-card.reveal-scale {
+  transition-delay: calc(var(--delay, 0) * 150ms);
+}
+
+/* Feature items stagger */
+.feature-item.reveal-scale:nth-child(1) { transition-delay: 0ms; }
+.feature-item.reveal-scale:nth-child(2) { transition-delay: 100ms; }
+.feature-item.reveal-scale:nth-child(3) { transition-delay: 200ms; }
+.feature-item.reveal-scale:nth-child(4) { transition-delay: 300ms; }
+
+/* Stats counter stagger */
+.stat-item.reveal-left:nth-child(1) { transition-delay: 0ms; }
+.stat-item.reveal-left:nth-child(2) { transition-delay: 150ms; }
+.stat-item.reveal-left:nth-child(3) { transition-delay: 300ms; }
+
+/* ===========================
+   HERO SECTION ANIMATIONS
+   =========================== */
+
+/* Hero content entrance animation */
+.hero-content.reveal {
+  animation: heroEntrance 1.2s var(--ease-out) forwards;
+}
+
+@keyframes heroEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  40% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero background parallax effect (optional enhancement) */
+@media (hover: hover) and (pointer: fine) {
+  .hero-section {
+    overflow: hidden;
+  }
+  
+  .hero-bg {
+    transition: transform 0.5s ease-out;
+  }
+  
+  .hero-section:hover .hero-bg {
+    transform: scale(1.02);
+  }
+}
+
+/* ===========================
+   COUNTER ANIMATIONS
+   =========================== */
+
+/* Number counting animation */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-number.counting {
+  animation: countUp 0.6s var(--ease-out);
+}
+
+/* ===========================
+   BUTTON HOVER ANIMATIONS
+   =========================== */
+
+/* Primary button hover effects */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-primary:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Button ripple effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple .ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+}
+
+/* ===========================
+   CARD HOVER ANIMATIONS
+   =========================== */
+
+/* Service card hover effects */
+.service-card {
+  position: relative;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  border-radius: var(--radius-xl);
+  transition: opacity var(--transition-slow);
+  z-index: -1;
+}
+
+.service-card:hover::before {
+  opacity: 0.05;
+}
+
+/* Portfolio card image zoom */
+.portfolio-card .portfolio-image {
+  overflow: hidden;
+}
+
+.portfolio-card:hover .portfolio-image img {
+  transform: scale(1.1) rotate(1deg);
+}
+
+/* ===========================
+   NAVIGATION ANIMATIONS
+   =========================== */
+
+/* Navigation link hover line animation */
+.nav-links a::after {
+  transform-origin: bottom left;
+  transition: transform var(--transition-base);
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+[dir="rtl"] .nav-links a::after {
+  transform-origin: bottom right;
+}
+
+/* Mobile menu slide animation */
+@media (max-width: 767px) {
+  .nav-links {
+    transform: translateX(100%);
+    transition: transform var(--transition-slow) var(--ease-out);
+  }
+  
+  .nav-links.open {
+    transform: translateX(0);
+  }
+  
+  [dir="rtl"] .nav-links {
+    transform: translateX(-100%);
+  }
+  
+  [dir="rtl"] .nav-links.open {
+    transform: translateX(0);
+  }
+}
+
+/* ===========================
+   ICON ANIMATIONS
+   =========================== */
+
+/* Service icon pulse animation */
+.service-icon {
+  animation: none;
+}
+
+.service-card:hover .service-icon {
+  animation: iconPulse 1s ease-in-out;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+/* Loading spinner for form submissions */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* ===========================
+   FORM ANIMATIONS
+   =========================== */
+
+/* Form field focus animation */
+.form-group input,
+.form-group textarea {
+  position: relative;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  animation: inputFocus 0.3s ease-out;
+}
+
+@keyframes inputFocus {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 168, 83, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgba(212, 168, 83, 0.1);
+  }
+}
+
+/* Error message slide in */
+.error-message {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-base), opacity var(--transition-base);
+}
+
+.form-group.error .error-message {
+  max-height: 50px;
+}
+
+/* Success message animation */
+.success-message {
+  transform: scale(0.9);
+}
+
+.success-message.show {
+  animation: successSlide 0.8s var(--ease-bounce) forwards;
+}
+
+@keyframes successSlide {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ===========================
+   MODAL ANIMATIONS
+   =========================== */
+
+/* Modal entrance animation */
+.project-modal .modal-content {
+  animation: modalSlideIn 0.4s var(--ease-out);
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Newsletter popup entrance */
+.newsletter-popup.show .newsletter-content {
+  animation: popupBounce 0.6s var(--ease-bounce);
+}
+
+@keyframes popupBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===========================
+   CAROUSEL ANIMATIONS
+   =========================== */
+
+/* Testimonial slide transitions */
+.testimonial-slide {
+  transition: opacity var(--transition-slow) ease-in-out;
+}
+
+/* Testimonial dot animation */
+.testimonials-dots .dot {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials-dots .dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(212, 168, 83, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.testimonials-dots .dot.active::after {
+  width: 100%;
+  height: 100%;
+}
+
+/* ===========================
+   LOADING STATES
+   =========================== */
+
+/* Page load animation */
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.page-loader .spinner {
+  width: 40px;
+  height: 40px;
+  border-width: 4px;
+  border-top-color: var(--accent-gold);
+}
+
+/* ===========================
+   SCROLL PROGRESS INDICATOR
+   =========================== */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(212, 168, 83, 0.2);
+  z-index: var(--z-fixed);
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: var(--gradient-primary);
+  width: 0%;
+  transition: width 0.1s ease;
+}
+
+/* ===========================
+   FLOATING ANIMATIONS
+   =========================== */
+
+/* Floating badge animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Delayed floating for multiple elements */
+.floating-delayed {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+/* ===========================
+   PARTICLE EFFECTS
+   =========================== */
+
+/* Floating particles background (optional enhancement) */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background: rgba(212, 168, 83, 0.1);
+  border-radius: 50%;
+  animation: particleFloat 20s linear infinite;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ===========================
+   REDUCED MOTION
+   =========================== */
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    animation-delay: 0ms !important;
+  }
+  
+  /* Keep essential animations but make them instant */
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    transition: opacity 0.01ms;
+  }
+  
+  .reveal.active,
+  .reveal-left.active,
+  .reveal-right.active,
+  .reveal-scale.active {
+    opacity: 1;
+    transform: none;
+  }
+  
+  /* Disable floating and rotating animations */
+  .floating,
+  .floating-delayed {
+    animation: none;
+  }
+  
+  .particle {
+    display: none;
+  }
+  
+  /* Keep focus and hover states but without transitions */
+  .btn:hover,
+  .service-card:hover,
+  .portfolio-card:hover {
+    transform: none;
+  }
+}
+
+/* ===========================
+   HIGH CONTRAST MODE
+   =========================== */
+
+@media (prefers-contrast: high) {
+  /* Simplify animations for better visibility */
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    transition: opacity var(--transition-fast);
+    transform: none !important;
+  }
+  
+  /* Remove subtle effects */
+  .btn-primary::after,
+  .service-card::before {
+    display: none;
+  }
+}
+
+/* ===========================
+   PRINT STYLES
+   =========================== */
+
+@media print {
+  /* Disable all animations for print */
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* Show all hidden elements */
+  .reveal,
+  .reveal-left, 
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ===========================
+   PERFORMANCE OPTIMIZATIONS
+   =========================== */
+
+/* GPU acceleration for animated elements */
+.btn,
+.service-card,
+.portfolio-card,
+.testimonial-slide,
+.modal-content,
+.nav-links {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize will-change for active animations */
+.reveal.active,
+.reveal-left.active,
+.reveal-right.active,
+.reveal-scale.active {
+  will-change: auto;
+}
